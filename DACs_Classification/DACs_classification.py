@@ -49,7 +49,7 @@ df = enc.fit_transform(df)
 y = df["CES 4.0 Percentile Range"]
 X = df.loc[:, df.columns != "CES 4.0 Percentile Range"]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, stratify=y) # assuming 90/10 split and not 90/20 lol
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y) # assuming 80/20 split and not 90/20 lol
 
 # Do not do steps 6 - 8 for the Ramdom Forest Model
 # Step 6:
@@ -80,12 +80,12 @@ y_pred = classifier.predict(X_test)
 
 # compute and print accuracy score
 acc = accuracy_score(y_test, y_pred)
-print("Accuracy score for SVM:", acc)
+print("\nAccuracy score for SVM:", acc)
 
 # Save your SVC model (whatever name you have given your model) as .sav to upload with your submission
 # You can use the library pickle to save and load your model for this assignment
 # i prefer to use the joblib library since its better built for large numpy arrays, like in scikit
-dump(classifier, 'SVC.sav') 
+dump(classifier, 'SVC.pkl') 
 
 # Optional: You can print test results of your model here if you want. Otherwise implement them in evaluation.py file
 print(y_pred)
@@ -124,11 +124,11 @@ y_pred = rfc.predict(X_test)
 
 # compute and print accuracy score
 acc = accuracy_score(y_test, y_pred)
-print("Accuracy score for Random Forest:", acc)
+print("\nAccuracy score for Random Forest:", acc)
 
 # Save your Random Forest model (whatever name you have given your model) as .sav to upload with your submission
 # You can use the library pickle to save and load your model for this assignment
-dump(rfc, "RandomForest.sav")
+dump(rfc, "RandomForest.pkl")
 
 # Optional: You can print test results of your model here if you want. Otherwise implement them in evaluation.py file
 print(y_pred)
